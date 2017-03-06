@@ -7,9 +7,9 @@ using Newtonsoft.Json;
 
 namespace CocktailRecipeLookup.Models
 {
-    public class Drink
+    public class DrinkModel
     {
-        public static DrinkQuery FindDrinksWithIngredients(List<string> ingredients)
+        public static List<Drink> FindDrinksWithIngredients(List<string> ingredients)
         {
 
             // Construct api query from ingredient list
@@ -40,8 +40,35 @@ namespace CocktailRecipeLookup.Models
 
             DrinkQuery resultDrinks = JsonConvert.DeserializeObject<DrinkQuery>(response.Content);
 
-            return resultDrinks;
+            return removePartialMatches(resultDrinks, ingredients);
         }
+
+        private static List<Drink> removePartialMatches(DrinkQuery drinkQuery, List<string> ingredients)
+        {
+            List<string> standardIngredients = new List<string> { "ice-cubes", "simple-syrup", "bitters", "lemon", "lime", "orange", "maraschino-berry", "apple" };
+            //List<string> garnishIngredients = new List<string> { "lemon", "lime", "orange", "maraschino-berry", "apple" };
+
+            List<Drink> matches = new List<Drink>();
+
+            foreach (Drink drink in drinkQuery.result)
+            {
+                bool matching = true;
+                foreach(Ingredient ingredient in drink.ingredients)
+                {
+                    if(!ingredients.Contains(ingredient.id) && !standardIngredients.Contains(ingredient.id))
+                    {
+                        matching = false;
+                        break;
+                    }
+                }
+                if(matching)
+                {
+                    matches.Add(drink);
+                }
+            }
+            return matches;
+        }
+
 
         public static Task<IRestResponse> GetResponseContentAsync(RestClient theClient, RestRequest theRequest)
         {

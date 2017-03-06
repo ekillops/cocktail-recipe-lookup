@@ -54,7 +54,7 @@ namespace CocktailRecipeLookup.Models
         public string text { get; set; }
     }
 
-    public class Result // Drink
+    public class Drink
     {
         public string description { get; set; }
         public string story { get; set; }
@@ -82,7 +82,7 @@ namespace CocktailRecipeLookup.Models
 
     public class DrinkQuery
     {
-        public List<Result> result { get; set; }
+        public List<Drink> result { get; set; }
         public int totalResult { get; set; }
         public string next { get; set; }
     }
