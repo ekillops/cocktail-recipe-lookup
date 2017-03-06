@@ -14,7 +14,9 @@
     "Microsoft.NETCore.App": {
       "version": "1.0.1",
       "type": "platform"
-    }
+    },
+    "Newtonsoft.Json": "9.0.1",
+    "RestSharp.NetCore": "105.2.3"
   },
   "frameworks": {
     "netcoreapp1.0": {
