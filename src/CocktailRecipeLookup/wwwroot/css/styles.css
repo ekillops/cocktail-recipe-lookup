@@ -1,0 +1,24 @@
+﻿@media only screen and (min-width: 992px) {
+    a.brand-logo {
+        padding-left: 20px;
+    }
+
+}
+
+@media only screen and (max-width: 992px) {
+
+}
+
+
+
+/* Make footer sticky */
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
