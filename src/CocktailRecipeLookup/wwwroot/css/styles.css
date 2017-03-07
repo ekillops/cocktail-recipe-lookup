@@ -1,4 +1,16 @@
-﻿@media only screen and (min-width: 992px) {
+﻿a.brand-logo {
+    color: #616161; /*text-grey, text-darken-2*/ 
+}
+
+nav ul li a{
+    color: #616161; /*text-grey, text-darken-2*/ 
+}
+
+h3 {
+    color: #616161; /*text-grey, text-darken-2*/ 
+}
+
+@media only screen and (min-width: 992px) {
     a.brand-logo {
         padding-left: 20px;
     }
@@ -9,7 +21,10 @@
 
 }
 
-
+.parallax img{
+    height: auto;
+    max-width: 100%;
+}
 
 /* Make footer sticky */
 

@@ -119,7 +119,7 @@ namespace CocktailRecipeLookup.Models
 
         private static List<Drink> removePartialMatches(List<Drink> drinkList, List<string> userIngredients)
         {
-            List<string> standardIngredients = new List<string> { "ice-cubes", "simple-syrup", "bitters", "lemon", "lime", "orange", "maraschino-berry", "apple" };
+            List<string> standardIngredients = new List<string> { "ice-cubes", "simple-syrup", "bitters", "lemon", "lime", "orange", "maraschino-berry", "apple", "soda-water" };
 
             List<Drink> matches = new List<Drink>();
 

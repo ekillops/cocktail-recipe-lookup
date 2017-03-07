@@ -9,28 +9,3 @@
 
     In hendrerit gravida orci, placerat lacinia orci. Nullam congue maximus elit. Sed maximus feugiat risus, a facilisis sem porta ac. Vivamus ac rutrum dui. Nulla malesuada convallis arcu, vitae sagittis eros eleifend ut. Sed suscipit eros at tortor ultrices tempor. Nullam vitae dictum tortor. In hac habitasse platea dictumst.
 </p>
-
-<button id="drinkTest">TEST</button>
-
-<script>
-    $(document).ready(function () {
-        $('#drinkTest').click(function () {
-            var ingredientList = ["vermouth-sweet", "rye-whiskey", "campari"];
-            $.ajax({
-                type: 'GET',
-                url: '/Drinks/SearchByIngredients/',
-                traditional: true,
-                data: { ingredients: ingredientList },
-                success: function (result) {
-                    console.log(result);
-                },
-                error: function (errorResult) {
-                    console.log(errorResult.message);
-
-                }
-            });
-
-        });
-
-    });
-</script>
