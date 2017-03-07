@@ -15,8 +15,7 @@
 <script>
     $(document).ready(function () {
         $('#drinkTest').click(function () {
-            debugger
-            var ingredientList = ["lemon-juice", "gin", "triple-sec"];
+            var ingredientList = ["vermouth-sweet", "rye-whiskey", "campari"];
             $.ajax({
                 type: 'GET',
                 url: '/Drinks/SearchByIngredients/',
@@ -24,6 +23,10 @@
                 data: { ingredients: ingredientList },
                 success: function (result) {
                     console.log(result);
+                },
+                error: function (errorResult) {
+                    console.log(errorResult.message);
+
                 }
             });
 

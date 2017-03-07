@@ -10,7 +10,7 @@ namespace CocktailRecipeLookup.Controllers
     {
         public List<Drink> SearchByIngredients(List<string> ingredients)
         {
-            List<Drink> foundDrinks = DrinkModel.FindDrinksWithIngredients(ingredients);
+            List<Drink> foundDrinks = DrinkModel.FindDrinksWithIngredientsBroad(ingredients);
             return foundDrinks;
         }
     }

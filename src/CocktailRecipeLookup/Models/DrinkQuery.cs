@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CocktailRecipeLookup.Models
 {
@@ -22,13 +23,6 @@ namespace CocktailRecipeLookup.Models
         public string text { get; set; }
     }
 
-    public class Ingredient
-    {
-        public string type { get; set; }
-        public string id { get; set; }
-        public string text { get; set; }
-        public string textPlain { get; set; }
-    }
 
     public class Taste
     {
@@ -54,6 +48,14 @@ namespace CocktailRecipeLookup.Models
         public string text { get; set; }
     }
 
+    public class DrinkIngredient
+    {
+        public string type { get; set; }
+        public string id { get; set; }
+        public string text { get; set; }
+        public string textPlain { get; set; }
+    }
+
     public class Drink
     {
         public string description { get; set; }
@@ -67,7 +69,7 @@ namespace CocktailRecipeLookup.Models
         public bool isHot { get; set; }
         public List<object> tags { get; set; }
         public ServedIn servedIn { get; set; }
-        public List<Ingredient> ingredients { get; set; }
+        public List<DrinkIngredient> ingredients { get; set; }
         public List<Taste> tastes { get; set; }
         public List<Occasion> occasions { get; set; }
         public List<Tool> tools { get; set; }
@@ -78,6 +80,24 @@ namespace CocktailRecipeLookup.Models
         public string id { get; set; }
         public string name { get; set; }
         public string descriptionPlain { get; set; }
+
+        public override bool Equals(Object otherObject)
+        {
+            if (!(otherObject is Drink))
+            {
+                return false;
+            }
+            else
+            {
+                Drink newDrink = (Drink)otherObject;
+                return this.id.Equals(newDrink.id);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return this.id.GetHashCode();
+        }
     }
 
     public class DrinkQuery
