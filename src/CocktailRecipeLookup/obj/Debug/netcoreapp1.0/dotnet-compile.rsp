@@ -1,5 +1,5 @@
---temp-output:C:\Users\epicodus\Documents\Visual Studio 2015\Projects\CocktailRecipeLookup\src\CocktailRecipeLookup\obj\Debug\netcoreapp1.0\
---out:C:\Users\epicodus\Documents\Visual Studio 2015\Projects\CocktailRecipeLookup\src\CocktailRecipeLookup\bin\Debug\netcoreapp1.0\CocktailRecipeLookup.dll
+--temp-output:C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\obj\Debug\netcoreapp1.0\
+--out:C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\bin\Debug\netcoreapp1.0\CocktailRecipeLookup.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -172,12 +172,12 @@
 --reference:C:\Users\epicodus\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\epicodus\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
 --reference:C:\Users\epicodus\.nuget\packages\System.Xml.XmlSerializer\4.0.11\ref\netstandard1.3\System.Xml.XmlSerializer.dll
---resource:"C:\Users\epicodus\Documents\Visual Studio 2015\Projects\CocktailRecipeLookup\src\CocktailRecipeLookup\obj\Debug\netcoreapp1.0\CocktailRecipeLookupdotnet-compile.deps.json",CocktailRecipeLookup.deps.json
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\CocktailRecipeLookup\src\CocktailRecipeLookup\Program.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\CocktailRecipeLookup\src\CocktailRecipeLookup\Startup.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\CocktailRecipeLookup\src\CocktailRecipeLookup\Controllers\DrinksController.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\CocktailRecipeLookup\src\CocktailRecipeLookup\Controllers\HomeController.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\CocktailRecipeLookup\src\CocktailRecipeLookup\Models\DrinkModel.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\CocktailRecipeLookup\src\CocktailRecipeLookup\Models\DrinkQuery.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\CocktailRecipeLookup\src\CocktailRecipeLookup\Models\EnvironmentVariables.cs
-C:\Users\epicodus\Documents\Visual Studio 2015\Projects\CocktailRecipeLookup\src\CocktailRecipeLookup\Models\IngredientModel.cs
+--resource:"C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\obj\Debug\netcoreapp1.0\CocktailRecipeLookupdotnet-compile.deps.json",CocktailRecipeLookup.deps.json
+C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Program.cs
+C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Startup.cs
+C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Controllers\DrinksController.cs
+C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Controllers\HomeController.cs
+C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Models\DrinkModel.cs
+C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Models\DrinkQuery.cs
+C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Models\EnvironmentVariables.cs
+C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Models\IngredientModel.cs
