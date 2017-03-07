@@ -9,6 +9,24 @@ namespace CocktailRecipeLookup.Models
 {
     public class DrinkModel
     {
+        public static Drink Details(string id)
+        {
+            RestClient client = new RestClient("http://addb.absolutdrinks.com/");
+
+            RestRequest request = new RestRequest("drinks/"+id+"/?apiKey=" + EnvironmentVariables.ADDbApiKey);
+
+            RestResponse response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+
+            DrinkQuery searchResults = JsonConvert.DeserializeObject<DrinkQuery>(response.Content);
+
+            return searchResults.result[0];
+        }
+
         public static List<Drink> FindDrinksWithExactIngredients(List<string> ingredients)
         {
 
@@ -85,37 +103,6 @@ namespace CocktailRecipeLookup.Models
 
             return removePartialMatches(bigDrinkList, ingredients);
         }
-
-        //public static List<Drink> FindDrinksWithIngredientsBroad(List<string> ingredients)
-        //{
-        //    var bigDrinkList = new List<Drink>();
-
-        //    foreach (string ingredient in ingredients)
-        //    {
-        //        string queryString = "drinks/with/" + ingredient + "/?apiKey=" + EnvironmentVariables.ADDbApiKey +"&pageSize=100";
-
-        //        RestClient client = new RestClient("http://addb.absolutdrinks.com/");
-        //        RestRequest request = new RestRequest(queryString);
-        //        RestResponse response = new RestResponse();
-
-        //        Task.Run(async () =>
-        //        {
-        //            response = await GetResponseContentAsync(client, request) as RestResponse;
-        //        }).Wait();
-
-        //        DrinkQuery resultDrinks = JsonConvert.DeserializeObject<DrinkQuery>(response.Content);
-
-        //        bigDrinkList.AddRange(resultDrinks.result);
-
-        //        while(bigDrinkList.Count < resultDrinks.totalResult - 1)
-        //        {
-        //            var nextPage = GetNextPageDrinks(bigDrinkList.Count, queryString);
-        //            bigDrinkList.AddRange(nextPage);
-        //        }
-        //    }
-
-        //    return removePartialMatches(bigDrinkList, ingredients);
-        //}
 
         private static List<Drink> removePartialMatches(List<Drink> drinkList, List<string> userIngredients)
         {

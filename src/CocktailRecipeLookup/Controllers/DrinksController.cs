@@ -17,6 +17,12 @@ namespace CocktailRecipeLookup.Controllers
             return View(IngredientModel.AllIngredients);
         }
 
+        public IActionResult Details(string id)
+        {
+            Drink foundDrink = DrinkModel.Details(id);
+            return View(foundDrink);
+        }
+
         public IActionResult SearchByIngredients(List<string> ingredients)
         {
             List<Drink> foundDrinks = DrinkModel.FindDrinksWithIngredientsBroad(ingredients);
