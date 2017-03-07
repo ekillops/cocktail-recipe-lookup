@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+}
+
+@using CocktailRecipeLookup.Models
+@model List<Drink>
+
+@foreach (var drink in Model)
+{
+    <div class="row">
+        <img src="@("http://assets.absolutdrinks.com/drinks/300x400/"+ drink.id +".png")" alt="@(drink.name + " image")" />
+        <h4>@drink.name</h4>
+        <div class="col m6">
+            <ul>
+                Flavor Profile:
+                @foreach (var flavor in drink.tastes)
+                {
+                    <li>@flavor.text</li>
+                }
+            </ul>
+        </div>
+        <div class="col m6">
+            <ul>
+                Ingredients:
+                @foreach (var ingredient in drink.ingredients)
+                {
+                    <li>@ingredient.text</li>
+                }
+            </ul>
+        </div>
+
+        <p>Directions:</p>
+        <p>@drink.descriptionPlain</p>
+    </div>
+}

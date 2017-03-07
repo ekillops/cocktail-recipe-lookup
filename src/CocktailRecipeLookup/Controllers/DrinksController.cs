@@ -8,10 +8,19 @@ namespace CocktailRecipeLookup.Controllers
 {
     public class DrinksController : Controller
     {
-        public List<Drink> SearchByIngredients(List<string> ingredients)
+        public IActionResult Index()
+        {
+            if (IngredientModel.AllIngredients == null)
+            {
+                IngredientModel.GetAll();
+            }
+            return View(IngredientModel.AllIngredients);
+        }
+
+        public IActionResult SearchByIngredients(List<string> ingredients)
         {
             List<Drink> foundDrinks = DrinkModel.FindDrinksWithIngredientsBroad(ingredients);
-            return foundDrinks;
+            return View("SearchResults", foundDrinks);
         }
     }
 }

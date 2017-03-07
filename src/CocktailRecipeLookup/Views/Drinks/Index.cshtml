@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Drinks";
+}
+
+@using CocktailRecipeLookup.Models
+@model List<Ingredient>
+
+<h1>Recipe Search</h1>
+<br />
+<p>Select your ingredients from the list below and hit 'submit' to see your results.</p>
+
+
+<form id="drinkSearch">
+    @*<select id="baseSpirits">
+            @foreach (var ingredient in Model)
+            {
+                @if (ingredient.isBaseSpirit == true)
+                {
+                    <option value="@ingredient.id">@ingredient.name</option>
+                }
+            }
+        </select>
+        <label>Base Spirits</label>*@
+    <select name="ingredients" multiple>
+        @foreach (var ingredient in Model)
+        {
+            <option value="@ingredient.id">@ingredient.name</option>
+        }
+    </select>
+    <label>Ingredients</label>
+    <input type="submit" value="Submit" class="btn" />
+</form>
+
+<div id="searchResultHeader"></div>
+<div id="searchResults"></div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#drinkSearch").submit(function (event) {
+            event.preventDefault();
+            $("#searchResultHeader").html("<p>Searching...</p>")
+            $.ajax({
+                url: "Drinks/SearchByIngredients",
+                data: $(this).serialize(),
+                success: function (drinkListPartial) {
+                    console.log(drinkListPartial);
+                    $("#searchResultHeader").html("<p>Search results...</p>")
+                    $("#searchResults").html(drinkListPartial);
+                }
+            })
+        })
+    });
+</script>

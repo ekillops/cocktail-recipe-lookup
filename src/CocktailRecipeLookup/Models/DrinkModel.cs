@@ -48,7 +48,7 @@ namespace CocktailRecipeLookup.Models
 
         public static List<Drink> FindDrinksWithIngredientsBroad(List<string> ingredients)
         {
-            var bigDrinkList = new List<Drink>();
+            List<Drink> bigDrinkList = new List<Drink>();
 
             string queryString = "drinks/with/";
 
@@ -79,7 +79,7 @@ namespace CocktailRecipeLookup.Models
 
             while (bigDrinkList.Count < resultDrinks.totalResult - 1)
             {
-                var nextPage = GetNextPageDrinks(bigDrinkList.Count, queryString);
+                List<Drink> nextPage = GetNextPageDrinks(bigDrinkList.Count, queryString);
                 bigDrinkList.AddRange(nextPage);
             }
 
