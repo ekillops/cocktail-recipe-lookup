@@ -16,7 +16,8 @@
       "type": "platform"
     },
     "Newtonsoft.Json": "9.0.1",
-    "RestSharp.NetCore": "105.2.3"
+    "RestSharp.NetCore": "105.2.3",
+    "System.Threading.Tasks.Parallel": "4.0.1"
   },
   "frameworks": {
     "netcoreapp1.0": {
