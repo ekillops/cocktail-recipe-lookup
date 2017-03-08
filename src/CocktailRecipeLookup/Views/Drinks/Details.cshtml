@@ -33,3 +33,16 @@
 
 <h4>Directions</h4>
 <p>@Model.descriptionPlain</p>
+<br />
+@if (Model.videos.Count > 0)
+{
+    @foreach (var video in Model.videos)
+    {
+        @if (video.type == "assets")
+        {
+            <div class="video-container">
+                <iframe width="416" height="234" src=@("http://assets.absolutdrinks.com/videos/" + @video.video) frameborder="0" allowfullscreen></iframe>
+            </div>
+        }
+    }
+}

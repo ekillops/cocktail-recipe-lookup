@@ -18,7 +18,7 @@
 <body>
     @* Side nav for hamburger *@
     <ul class="side-nav" id="hamburger">
-        <li><a asp-controller="Drinks" asp-action="Index">Use What's Available</a></li>
+        <li><a asp-controller="Drinks" asp-action="UseAvailableIngredients">Use What's Available</a></li>
     </ul>
     <header>
         <div class="navbar-fixed">
@@ -26,7 +26,7 @@
                 <div class="nav-wrapper">
                     <a asp-controller="Home" asp-action="Index" class="brand-logo left">Spirit Quest</a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a asp-controller="Drinks" asp-action="Index">Use What's Available</a></li>
+                        <li><a asp-controller="Drinks" asp-action="UseAvailableIngredients">Use What's Available</a></li>
                     </ul>
                     <a href="#" data-activates="hamburger" class="button-collapse right grey-text text-darken-2"><i class="material-icons">menu</i></a>
                     <form class="right" asp-controller="Drinks" asp-action="Search">

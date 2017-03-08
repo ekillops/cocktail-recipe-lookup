@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Drinks";
+}
+
+@using CocktailRecipeLookup.Models
+@model List<Ingredient>
+
+<h3>Use What's Available</h3>
+<br />
+<p>Select your available ingredients from the lists below and search to find cocktails you can make without buying a thing.</p>
+<br />
+<form id="drinkSearch">
+    <div class="input-field">
+        <select id="baseSpirits" multiple>
+            <option disabled>Select base spirits</option>
+            @foreach (var ingredient in Model)
+            {
+                @if (ingredient.isBaseSpirit == true && !ingredient.id.Contains("absolut"))
+                {
+                    <option value="@ingredient.id">@ingredient.name</option>
+                }
+            }
+        </select>
+        <label>Base Spirits</label>
+    </div>
+    <br />
+    <div class="input-field">
+        <select id="ingredients" multiple>
+            <option disabled>Select ingredients</option>
+            @foreach (var ingredient in Model)
+            {
+                @if (ingredient.isBaseSpirit == false && !ingredient.id.Contains("absolut"))
+                {
+                    <option value="@ingredient.id">@ingredient.name</option>
+                }
+            }
+        </select>
+        <label>Ingredients</label>
+    </div>
+    <input type="submit" value="Search Recipes" class="btn" />
+</form>
+
+<div id="searchResultHeader"></div>
+<div id="searchResults"></div>
+
+
+<script>
+    $(document).ready(function () {
+        $("#drinkSearch").submit(function (event) {
+            event.preventDefault();
+
+            $("#searchResultHeader").html('<div class="progress"><div class="indeterminate"></div></div>');
+            $("#searchResults").empty();
+
+            // Collect form inputs
+            var selectedIngredients = [];
+            $('#ingredients option:selected').each(function () {
+                selectedIngredients.push($(this).val());
+            });
+            $('#baseSpirits option:selected').each(function () {
+                selectedIngredients.push($(this).val());
+            });
+            // Send search request to controller/model
+            $.ajax({
+                url: "Drinks/SearchByIngredients",
+                traditional: true,
+                data: { ingredients: selectedIngredients },
+                success: function (drinkListPartial) {
+                    // Display results
+                    $("#searchResultHeader").html("<p>Search results...</p>")
+                    $("#searchResults").html(drinkListPartial);
+                }
+            })
+        })
+    });
+</script>

@@ -8,7 +8,7 @@ namespace CocktailRecipeLookup.Controllers
 {
     public class DrinksController : Controller
     {
-        public IActionResult Index()
+        public IActionResult UseAvailableIngredients()
         {
             if (IngredientModel.AllIngredients == null)
             {
