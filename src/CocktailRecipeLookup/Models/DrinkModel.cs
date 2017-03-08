@@ -9,6 +9,21 @@ namespace CocktailRecipeLookup.Models
 {
     public class DrinkModel
     {
+        public static List<Drink> Search(string query)
+        {
+            RestClient client = new RestClient("http://addb.absolutdrinks.com/");
+            RestRequest request = new RestRequest("quickSearch/drinks/" + query + "/?apiKey=" + EnvironmentVariables.ADDbApiKey);
+            RestResponse response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+
+            DrinkQuery searchResults = JsonConvert.DeserializeObject<DrinkQuery>(response.Content);
+            return searchResults.result;
+        }
+
         public static Drink Details(string id)
         {
             RestClient client = new RestClient("http://addb.absolutdrinks.com/");

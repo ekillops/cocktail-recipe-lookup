@@ -18,19 +18,24 @@
 <body>
     @* Side nav for hamburger *@
     <ul class="side-nav" id="hamburger">
-        <li><a asp-controller="Home" asp-action="About">About</a></li>
-        <li><a asp-controller="Home" asp-action="Projects">Projects</a></li>
+        <li><a asp-controller="Drinks" asp-action="Index">Use What's Available</a></li>
     </ul>
     <header>
         <div class="navbar-fixed">
             <nav class="grey lighten-3"> @* Set Navbar Color *@
                 <div class="nav-wrapper">
-                    <a asp-controller="Home" asp-action="Index" class="brand-logo">Spirit Quest</a>
+                    <a asp-controller="Home" asp-action="Index" class="brand-logo left">Spirit Quest</a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a asp-controller="Home" asp-action="About">About</a></li>
-                        <li><a asp-controller="Drinks" asp-action="Index">Recipes</a></li>
+                        <li><a asp-controller="Drinks" asp-action="Index">Use What's Available</a></li>
                     </ul>
-                    <a href="#" data-activates="hamburger" class="button-collapse right"><i class="material-icons">menu</i></a>
+                    <a href="#" data-activates="hamburger" class="button-collapse right grey-text text-darken-2"><i class="material-icons">menu</i></a>
+                    <form class="right" asp-controller="Drinks" asp-action="Search">
+                        <div class="input-field">
+                            <input id="search" type="search" name="query" placeholder="Search by drink name...">
+                            <label class="label-icon" for="search"><i class="material-icons grey-text text-darken-2">search</i></label>
+                            <i class="material-icons">close</i>
+                        </div>
+                    </form>
                 </div>
             </nav>
         </div>
@@ -47,18 +52,19 @@
     <footer class="page-footer grey lighten-3">
         <div class="container">
             <div class="row">
-                <div class="col m6 s12">
+                <div class="col m4 s12">
                     <h5 class="grey-text text-darken-2">About the site</h5>
-                    <p class="grey-text text-darken-2">Created using ASP.NET Core and Absolut Drinks Database API</p>
+                    <p class="grey-text text-darken-2">Created using ASP.NET Core and <a class="grey-text text-darken-2" href="https://addb.absolutdrinks.com/docs/">Absolut Drinks Database API</a></p>
                 </div>
-                @*<div class="col m3 offset-m3 s12">
-                    <h5 class="grey-text text-darken-2">Connect</h5>
+                <div class="col m4 offset-m4 s12">
+                    <h5 class="grey-text text-darken-2">Cocktail Resources</h5>
                     <ul>
-                        <li><a class="grey-text text-darken-2" href="https://github.com/ekillops">Github</a></li>
-                        <li><a class="grey-text text-darken-2" href="www.linkedin.com/in/ekillops">LinkedIn</a></li>
-                        <li><a class="grey-text text-darken-2" href="mailto:erik.killops@gmail.com">Email</a></li>
+                        <li><a class="grey-text text-darken-2"href="http://imbibemagazine.com/category/recipes/cocktails-spirits-recipes/">Imbibe Magazine</a></li>
+                        <li><a class="grey-text text-darken-2"href="https://drinkstraightup.com/">The Straight Up</a></li>
+                        <li><a class="grey-text text-darken-2"href="http://www.tuxedono2.com/">Tuxedo No. 2</a></li>
+                        <li><a class="grey-text text-darken-2"href="http://www.seriouseats.com/recipes/topics/meal/drinks/cocktails">Serious Eats</a></li>
                     </ul>
-                </div>*@
+                </div>
             </div>
         </div>
         <div class="footer-copyright grey lighten-3">

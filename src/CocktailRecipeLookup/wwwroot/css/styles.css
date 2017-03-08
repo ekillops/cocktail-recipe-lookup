@@ -1,13 +1,10 @@
-﻿a.brand-logo {
-    color: #616161; /*text-grey, text-darken-2*/ 
+﻿/* #616161 text-grey, text-darken-2*/ 
+a.brand-logo {
+    color: #616161; 
 }
 
 nav ul li a{
-    color: #616161; /*text-grey, text-darken-2*/ 
-}
-
-h3 {
-    color: #616161; /*text-grey, text-darken-2*/ 
+    color: #616161;
 }
 
 @media only screen and (min-width: 992px) {
