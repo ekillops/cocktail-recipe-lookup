@@ -39,7 +39,7 @@
     </div>
     <input type="submit" value="Search Recipes" class="btn" />
 </form>
-
+<br />
 <div id="searchResultHeader"></div>
 <div id="searchResults"></div>
 
@@ -48,21 +48,22 @@
     $(document).ready(function () {
         $("#drinkSearch").submit(function (event) {
             event.preventDefault();
+            debugger
 
             $("#searchResultHeader").html('<div class="progress"><div class="indeterminate"></div></div>');
             $("#searchResults").empty();
 
             // Collect form inputs
             var selectedIngredients = [];
-            $('#ingredients option:selected').each(function () {
+            $('#baseSpirits option:selected').each(function () {
                 selectedIngredients.push($(this).val());
             });
-            $('#baseSpirits option:selected').each(function () {
+            $('#ingredients option:selected').each(function () {
                 selectedIngredients.push($(this).val());
             });
             // Send search request to controller/model
             $.ajax({
-                url: "Drinks/SearchByIngredients",
+                url: "/Drinks/SearchByIngredients",
                 traditional: true,
                 data: { ingredients: selectedIngredients },
                 success: function (drinkListPartial) {

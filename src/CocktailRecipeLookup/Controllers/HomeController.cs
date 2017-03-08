@@ -8,5 +8,17 @@ namespace CocktailRecipeLookup.Controllers
         {
             return View();
         }
+
+        public IActionResult Search(string query, string searchType)
+        {
+            if(searchType == "ingredients")
+            {
+                return RedirectToAction("Search", "Ingredients", new { query = query });
+            }
+            else
+            {
+                return RedirectToAction("Search", "Drinks", new { query = query });
+            }
+        }
     }
 }

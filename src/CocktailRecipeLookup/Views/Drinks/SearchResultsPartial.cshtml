@@ -16,7 +16,7 @@ else
         <div class="row">
             <div class="col m8">
                 <div class="row">
-                    <h4>@drink.name</h4>
+                    <h4><a class="black-text" asp-controller="Drinks" asp-action="Details" asp-route-id="@drink.id">@drink.name</a></h4>
                     <div class="col m4">
                         <u>Flavor Profile:</u>
                         <ul>
@@ -31,14 +31,14 @@ else
                         <ul>
                             @foreach (var ingredient in drink.ingredients)
                     {
-                                <li><a asp-controller="Ingredients" asp-action="Details" asp-id="@ingredient.id">@ingredient.textPlain</a></li>
+                                <li><a class="black-text" asp-controller="Ingredients" asp-action="Details" asp-id="@ingredient.id">@ingredient.textPlain</a></li>
                             }
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="col m4">
-                <img src="@("http://assets.absolutdrinks.com/drinks/300x400/"+ drink.id +".png")" alt="@(drink.name + " image")" />
+                <a class="black-text" asp-controller="Drinks" asp-action="Details" asp-route-id="@drink.id"><img src="@("http://assets.absolutdrinks.com/drinks/300x400/"+ drink.id +".png")" alt="@(drink.name + " image")" /></a>
             </div>
         </div>
     }

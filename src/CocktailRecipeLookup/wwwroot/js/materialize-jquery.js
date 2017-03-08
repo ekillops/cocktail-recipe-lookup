@@ -10,4 +10,14 @@
     $('select').material_select();
     $(".dropdown-button").dropdown();
     $('.parallax').parallax();
+
+    $('a#toggle-search').click(function () {
+        var search = $('div#search');
+
+        search.is(":visible") ? search.slideUp() : search.slideDown(function () {
+            search.find('input').focus();
+        });
+
+        return false;
+    });
 });

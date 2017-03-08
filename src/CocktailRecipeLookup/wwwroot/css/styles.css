@@ -7,6 +7,10 @@ nav ul li a{
     color: #616161;
 }
 
+nav .input-field input {
+    font-size: 1rem;
+}
+
 @media only screen and (min-width: 992px) {
     a.brand-logo {
         padding-left: 20px;
@@ -16,6 +20,13 @@ nav ul li a{
 
 @media only screen and (max-width: 992px) {
 
+}
+
+#search {
+    display: none;
+    margin-bottom: 0px;
+    border-top: 1px solid #111;
+    border-bottom: 1px solid #111;
 }
 
 .parallax img{

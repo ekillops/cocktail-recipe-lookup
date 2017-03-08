@@ -28,7 +28,7 @@ namespace CocktailRecipeLookup.Models
         {
             RestClient client = new RestClient("http://addb.absolutdrinks.com/");
 
-            RestRequest request = new RestRequest("drinks/"+id+"/?apiKey=" + EnvironmentVariables.ADDbApiKey);
+            RestRequest request = new RestRequest("drinks/" + id + "/?apiKey=" + EnvironmentVariables.ADDbApiKey);
 
             RestResponse response = new RestResponse();
 
@@ -85,7 +85,7 @@ namespace CocktailRecipeLookup.Models
 
             string queryString = "drinks/with/";
 
-            for(int i = 0; i < ingredients.Count; i++)
+            for (int i = 0; i < ingredients.Count; i++)
             {
                 if (i != ingredients.Count - 1)
                 {
