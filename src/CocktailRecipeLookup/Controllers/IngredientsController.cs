@@ -19,5 +19,11 @@ namespace CocktailRecipeLookup.Controllers
             Ingredient foundIngredient = IngredientModel.Details(id);
             return View(foundIngredient);
         }
+
+        public IActionResult Search(string query)
+        {
+            List<Ingredient> searchResults = IngredientModel.Search(query);
+            return View("SearchResults", searchResults);
+        }
     }
 }

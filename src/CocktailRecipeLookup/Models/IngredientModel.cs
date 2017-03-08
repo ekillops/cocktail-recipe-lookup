@@ -66,6 +66,21 @@ namespace CocktailRecipeLookup.Models
             return resultIngredients.result;
         }
 
+        public static List<Ingredient> Search(string query)
+        {
+            RestClient client = new RestClient("http://addb.absolutdrinks.com/");
+            RestRequest request = new RestRequest("quickSearch/ingredients/" + query + "/?apiKey=" + EnvironmentVariables.ADDbApiKey);
+            RestResponse response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+
+            IngredientQuery searchResults = JsonConvert.DeserializeObject<IngredientQuery>(response.Content);
+            return searchResults.result;
+        }
+
         public static Task<IRestResponse> GetResponseContentAsync(RestClient theClient, RestRequest theRequest)
         {
             TaskCompletionSource<IRestResponse> tcs = new TaskCompletionSource<IRestResponse>();

@@ -30,7 +30,7 @@ namespace CocktailRecipeLookup.Controllers
 
         public IActionResult SearchByIngredients(List<string> ingredients)
         {
-            List<Drink> foundDrinks = DrinkModel.FindDrinksWithIngredientsBroad(ingredients);
+            List<Drink> foundDrinks = DrinkModel.FindDrinksWithAvailable(ingredients);
             return View("SearchResultsPartial", foundDrinks);
         }
     }

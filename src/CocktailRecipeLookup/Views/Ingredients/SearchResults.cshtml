@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Search Results";
+}
+
+@using CocktailRecipeLookup.Models
+@model List<Ingredient>
+
+<h3>Search Results</h3>
+<hr />
+<br />
+@if (Model.Count == 0)
+{
+    <p>No results, consider revising your search parameters.</p>
+}
+else
+{
+    @foreach (var ingredient in Model)
+    {
+        <div class="row">
+            <h4>@ingredient.name</h4>
+            <div class="col m8">
+                <p>@ingredient.description</p>
+            </div>
+            <div class="col m3 offset-m1">
+                <p>
+                    Alcoholic: 
+                    @if(ingredient.isAlcoholic)
+                    {
+                        @:Yes
+                    }
+                    else
+                    {
+                        @:No
+                    }
+                </p>
+                <p>
+                    Type: @ingredient.type
+                </p>
+            </div>
+        </div>
+    }
+
+}

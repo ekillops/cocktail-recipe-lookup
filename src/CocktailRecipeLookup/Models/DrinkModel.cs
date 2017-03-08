@@ -103,7 +103,7 @@ namespace CocktailRecipeLookup.Models
         }
 
 
-        public static List<Drink> FindDrinksWithIngredientsBroad(List<string> ingredients)
+        public static List<Drink> FindDrinksWithAvailable(List<string> ingredients)
         {
             List<Drink> bigDrinkList = new List<Drink>();
 
