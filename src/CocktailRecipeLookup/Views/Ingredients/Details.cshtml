@@ -3,9 +3,26 @@
 
 @model CocktailRecipeLookup.Models.Ingredient
 
-<h2>@Model.name</h2>
-
 <div class="row">
-    <h4>Description</h4>
-    <p>@Model.description</p>
+    <h3>@Model.name</h3>
+    <div class="col m8">
+        <p>@Model.description</p>
+    </div>
+    <div class="col m3 offset-m1">
+        <p>
+            Alcoholic:  
+            @if (Model.isAlcoholic)
+            {
+                @:Yes
+                    }
+            else
+            {
+                @:No
+                    }
+        </p>
+        <p>
+            Type:  @Model.type
+        </p>
+    </div>
 </div>
+
