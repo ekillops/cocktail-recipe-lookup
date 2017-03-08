@@ -15,29 +15,29 @@
 else
 {
     @foreach (var ingredient in Model)
-    {
-        <div class="row">
-            <h4>@ingredient.name</h4>
-            <div class="col m8">
-                <p>@ingredient.description</p>
-            </div>
-            <div class="col m3 offset-m1">
-                <p>
-                    Alcoholic: 
-                    @if(ingredient.isAlcoholic)
-                    {
-                        @:Yes
+    {        <div class="row">
+        <h4>@ingredient.name</h4>
+        <div class="col m8">
+            <p>@ingredient.description</p>
+        </div>
+        <div class="col m3 offset-m1">
+            <p>
+                Alcoholic:
+                @if (ingredient.isAlcoholic)
+                {
+                    @:Yes
                     }
                     else
                     {
-                        @:No
+                    @:No
                     }
-                </p>
-                <p>
-                    Type: @ingredient.type
-                </p>
-            </div>
+            </p>
+            <p>
+                Type: @ingredient.type
+            </p>
         </div>
+    </div>
+
     }
 
 }

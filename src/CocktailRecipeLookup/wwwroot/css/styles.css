@@ -1,6 +1,6 @@
 ﻿/* #616161 text-grey, text-darken-2*/ 
 a.brand-logo {
-    color: #616161; 
+    color: #616161;
 }
 
 nav ul li a{
@@ -11,15 +11,37 @@ nav .input-field input {
     font-size: 1rem;
 }
 
-@media only screen and (min-width: 992px) {
+#title {
+    font-weight: 400;
+} 
+
+#sub-title {
+    font-weight: 300;
+}
+
+#call-to-action {
+    text-align: center;
+}
+
+.parallax-container {
+    height: 350px;
+}
+@media only screen and (min-width: 769px) {
     a.brand-logo {
         padding-left: 20px;
     }
-
+    
+    .parallax img {
+        height: auto;
+        max-width: 100%;
+    }
 }
 
-@media only screen and (max-width: 992px) {
-
+@media only screen and (max-width: 768px) {
+    .parallax img {
+        height: auto;
+        max-width: 200%;
+    }
 }
 
 #search {
@@ -29,10 +51,6 @@ nav .input-field input {
     border-bottom: 1px solid #111;
 }
 
-.parallax img{
-    height: auto;
-    max-width: 100%;
-}
 
 /* Make footer sticky */
 

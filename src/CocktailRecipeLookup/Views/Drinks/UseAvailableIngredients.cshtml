@@ -5,8 +5,8 @@
 @using CocktailRecipeLookup.Models
 @model List<Ingredient>
 
-<h3>Use What's Available</h3>
-<br />
+<h3>Use What You Have</h3>
+
 <p>Select your available ingredients from the lists below and search to find cocktails you can make using only what you have.</p>
 <br />
 <div class="row">
@@ -50,7 +50,7 @@
 <div id="help" class="modal">
     <div class="modal-content">
         <h4>Help</h4>
-        <p>Drinks, ingredients, and recipes on ADDb are listed in very specific and not always logical way. For instance, if you select <em>Cointreau</em> recipes using <em>Triple Sec</em> will not match. For best results select all variations of an ingredient. If you need help identifying ingredients or locating a recipe you think is missing from your results, use the search bar at the top of the page.</p>
+        <p>Drinks, ingredients, and recipes on ADDb are listed in very specific and not always logical way. For instance, even with <em>Cointreau</em> selected, recipes using <em>Triple Sec</em> will not match. For best results select all variations of an ingredient. If you need help identifying ingredients or locating a recipe you think is missing from your results, use the search bar at the top of the page.</p>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
@@ -82,7 +82,7 @@
                 data: { ingredients: selectedIngredients },
                 success: function (drinkListPartial) {
                     // Display results
-                    $("#searchResultHeader").html("<p>Search results...</p>")
+                    $("#searchResultHeader").empty();
                     $("#searchResults").html(drinkListPartial);
                 }
             })
