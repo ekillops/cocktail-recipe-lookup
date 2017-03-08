@@ -31,7 +31,7 @@ else
                         <ul>
                             @foreach (var ingredient in drink.ingredients)
                     {
-                                <li><a class="black-text" asp-controller="Ingredients" asp-action="Details" asp-id="@ingredient.id">@ingredient.textPlain</a></li>
+                                <li><a class="black-text" asp-controller="Ingredients" asp-action="Details" asp-route-id="@ingredient.id">@ingredient.textPlain</a></li>
                             }
                         </ul>
                     </div>

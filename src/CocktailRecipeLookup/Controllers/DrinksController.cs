@@ -18,6 +18,7 @@ namespace CocktailRecipeLookup.Controllers
         public IActionResult Details(string id)
         {
             Drink foundDrink = DrinkModel.Details(id);
+            ViewBag.DrinkIngredients = DrinkModel.GetDrinkIngredients(id);
             return View(foundDrink);
         }
 

@@ -24,7 +24,7 @@ else
                         <u>Flavor Profile:</u>
                         <ul>
                             @foreach (var flavor in drink.tastes)
-                    {
+                            {
                                 <li>@flavor.text</li>
                             }
                         </ul>
@@ -33,8 +33,8 @@ else
                         <u>Ingredients:</u>
                         <ul>
                             @foreach (var ingredient in drink.ingredients)
-                    {
-                                <li><a asp-controller="Ingredients" asp-action="Details" asp-id="@ingredient.id">@ingredient.textPlain</a></li>
+                            {
+                                <li><a asp-controller="Ingredients" asp-action="Details" asp-route-id="@ingredient.id">@ingredient.textPlain</a></li>
                             }
                         </ul>
                     </div>

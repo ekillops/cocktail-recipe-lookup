@@ -9,6 +9,22 @@ namespace CocktailRecipeLookup.Models
     {
         public static List<Ingredient> AllIngredients { get; set; }
 
+
+        public static Ingredient Details(string id)
+        {
+            RestClient client = new RestClient("http://addb.absolutdrinks.com/");
+            RestRequest request = new RestRequest("ingredients/" + id + "/?apiKey=" + EnvironmentVariables.ADDbApiKey);
+            RestResponse response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+
+            Ingredient result = JsonConvert.DeserializeObject<Ingredient>(response.Content);
+            return result;
+        }
+
         public static void GetAll()
         {
             List<Ingredient> allIngredients = new List<Ingredient>();

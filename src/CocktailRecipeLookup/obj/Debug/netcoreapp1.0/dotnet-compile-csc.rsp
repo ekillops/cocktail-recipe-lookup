@@ -173,6 +173,7 @@
 "C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Startup.cs"
 "C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Controllers\DrinksController.cs"
 "C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Controllers\HomeController.cs"
+"C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Controllers\IngredientsController.cs"
 "C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Models\DrinkModel.cs"
 "C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Models\DrinkQuery.cs"
 "C:\Users\epicodus\Desktop\cocktail-recipe-lookup\src\CocktailRecipeLookup\Models\EnvironmentVariables.cs"

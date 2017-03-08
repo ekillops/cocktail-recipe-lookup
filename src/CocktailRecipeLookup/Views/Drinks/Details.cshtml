@@ -9,16 +9,21 @@
 <br />
 <div class="row">
     <div class="col m4">
-        <u>Ingredients:</u>
-        <ul>
+        <h5><u>Ingredients:</u></h5>
+        <ul class="collapsible" data-collapsible="accordion">
+            @*<li><a class="black-text" asp-controller="Ingredients" asp-action="Details" asp-route-id="@ingredient.id">@ingredient.textPlain</a></li>*@
             @foreach (var ingredient in Model.ingredients)
             {
-                <li>@ingredient.text</li>
+                <li>
+                    <div class="collapsible-header">@ingredient.textPlain</div>
+                    <div class="collapsible-body"><span>@ViewBag.DrinkIngredients[ingredient.id].description</span></div>
+                </li>
+
             }
         </ul>
     </div>
-    <div class="col m4">
-        <u>Flavor Profile:</u>
+    <div class="col m3 offset-m1">
+        <h5><u>Flavor Profile:</u></h5>
         <ul>
             @foreach (var flavor in Model.tastes)
             {

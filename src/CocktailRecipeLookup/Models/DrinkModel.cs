@@ -42,6 +42,30 @@ namespace CocktailRecipeLookup.Models
             return searchResults.result[0];
         }
 
+        public static Dictionary<string, Ingredient> GetDrinkIngredients(string id)
+        {
+            Drink foundDrink = Details(id);
+
+            Dictionary<string, Ingredient> drinkIngredients = new Dictionary<string, Ingredient>();
+            foreach (DrinkIngredient ingredient in foundDrink.ingredients)
+            {
+                RestClient client = new RestClient("http://addb.absolutdrinks.com/");
+
+                RestRequest request = new RestRequest("ingredients/" + ingredient.id + "/?apiKey=" + EnvironmentVariables.ADDbApiKey);
+                RestResponse response = new RestResponse();
+
+                Task.Run(async () =>
+                {
+                    response = await GetResponseContentAsync(client, request) as RestResponse;
+                }).Wait();
+
+                Ingredient foundIngredient = JsonConvert.DeserializeObject<Ingredient>(response.Content);
+
+                drinkIngredients.Add(foundIngredient.id, foundIngredient);
+            }
+            return drinkIngredients;
+        }
+
         public static List<Drink> FindDrinksWithExactIngredients(List<string> ingredients)
         {
 
