@@ -99,12 +99,14 @@ namespace CocktailRecipeLookup.Models
             DrinkQuery resultDrinks = JsonConvert.DeserializeObject<DrinkQuery>(response.Content);
 
 
-            return removePartialMatches(resultDrinks.result, ingredients);
+            return RemovePartialMatches(resultDrinks.result, ingredients);
         }
 
 
         public static List<Drink> FindDrinksWithAvailableIngredients(List<string> ingredients)
         {
+            ingredients = AddRelatedIngredients(ingredients);
+
             List<Drink> bigDrinkList = new List<Drink>();
 
             string queryString = "drinks/with/";
@@ -140,10 +142,10 @@ namespace CocktailRecipeLookup.Models
                 bigDrinkList.AddRange(nextPage);
             }
 
-            return removePartialMatches(bigDrinkList, ingredients);
+            return RemovePartialMatches(bigDrinkList, ingredients);
         }
 
-        public static List<Drink> FindAllDrinksContainingIngredients(List<string> ingredients)
+        public static List<Drink> FindDrinksContainingAllIngredients(List<string> ingredients)
         {
             List<Drink> bigDrinkList = new List<Drink>();
 
@@ -183,13 +185,63 @@ namespace CocktailRecipeLookup.Models
             return bigDrinkList;
         }
 
-        // Filter function
-        private static List<Drink> removePartialMatches(List<Drink> drinkList, List<string> userIngredients)
+        public static List<Drink> FindDrinksContainingAnyIngredients(List<string> ingredients)
         {
-            // ADD EGG WHITE ??
+            ingredients = AddRelatedIngredients(ingredients);
+
+            List<Drink> bigDrinkList = new List<Drink>();
+
+            string queryString = "drinks/with/";
+
+            for (int i = 0; i < ingredients.Count; i++)
+            {
+                if (i != ingredients.Count - 1)
+                {
+                    queryString += ingredients[i] + "/or/";
+                }
+                else
+                {
+                    queryString += ingredients[i] + "/?apiKey=" + EnvironmentVariables.ADDbApiKey + "&pageSize=100";
+                }
+            }
+
+            RestClient client = new RestClient("http://addb.absolutdrinks.com/");
+            RestRequest request = new RestRequest(queryString);
+            RestResponse response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+
+            DrinkQuery resultDrinks = JsonConvert.DeserializeObject<DrinkQuery>(response.Content);
+
+            bigDrinkList.AddRange(resultDrinks.result);
+
+            while (bigDrinkList.Count < resultDrinks.totalResult - 1)
+            {
+                List<Drink> nextPage = GetNextPageDrinks(bigDrinkList.Count, queryString);
+                bigDrinkList.AddRange(nextPage);
+            }
+
+            return bigDrinkList;
+        }
+
+        // Filter function
+        private static List<Drink> RemovePartialMatches(List<Drink> drinkList, List<string> userIngredients)
+        {
 
             // List of ingredients to ignore when filtering out partial matches
             List<string> standardIngredients = new List<string> { "ice-cubes", "simple-syrup", "bitters", "lemon", "lime", "orange", "maraschino-berry", "apple", "soda-water", "egg-white" };
+
+            if(userIngredients.Contains("triple-sec"))
+            {
+                userIngredients.Add("cointreau");
+            }
+            if (userIngredients.Contains("cointreau"))
+            {
+                userIngredients.Add("triple-sec");
+            }
 
             List<Drink> matches = new List<Drink>();
 
@@ -210,6 +262,107 @@ namespace CocktailRecipeLookup.Models
                 }
             }
             return matches;
+        }
+
+        private static List<string> AddRelatedIngredients(List<string> ingredientList)
+        {
+            // Triple Sec
+            if (ingredientList.Contains("triple-sec"))
+            {
+                ingredientList.Add("cointreau");
+            }
+            else if (ingredientList.Contains("cointreau"))
+            {
+                ingredientList.Add("triple-sec");
+            }
+
+            // Brandy
+            if (ingredientList.Contains("brandy"))
+            {
+                ingredientList.Add("cognac");
+            }
+            else if (ingredientList.Contains("cognac"))
+            {
+                ingredientList.Add("brandy");
+            }
+
+            // Absinthe
+            if (ingredientList.Contains("absinthe"))
+            {
+                ingredientList.Add("pastis");
+            }
+            else if (ingredientList.Contains("pastis"))
+            {
+                ingredientList.Add("absinthe");
+            }
+
+            // Rye Whiskey
+            if (ingredientList.Contains("rye-whiskey"))
+            {
+                ingredientList.Add("canadian-whisky");
+                ingredientList.Add("bourbon");
+            }
+            else if (ingredientList.Contains("canadian-whisky"))
+            {
+                ingredientList.Add("rye-whiskey");
+                ingredientList.Add("bourbon");
+            }
+
+            // Cassis
+            if (ingredientList.Contains("creme-de-cassis"))
+            {
+                ingredientList.Add("black-currant-liqueur");
+            }
+            else if (ingredientList.Contains("black-currant-liqueur"))
+            {
+                ingredientList.Add("creme-de-cassis");
+            }
+
+            // Sweet Vermouth
+            if (ingredientList.Contains("vermouth-sweet"))
+            {
+                ingredientList.Add("red-vermouth");
+                ingredientList.Add("italian-vermouth");
+            }
+            else if (ingredientList.Contains("red-vermouth"))
+            {
+                ingredientList.Add("vermouth-sweet");
+                ingredientList.Add("italian-vermouth");
+            }
+            else if (ingredientList.Contains("italian-vermout"))
+            {
+                ingredientList.Add("vermouth-sweet");
+                ingredientList.Add("red-vermouth");
+            }
+
+            // Ginger Beer
+            if (ingredientList.Contains("ginger-beer"))
+            {
+                ingredientList.Add("ginger-ale");
+            }
+            else if (ingredientList.Contains("ginger-ale"))
+            {
+                ingredientList.Add("ginger-beer");
+            }
+
+            // Sparkling Wine
+            if (ingredientList.Contains("sparkling-wine"))
+            {
+                ingredientList.Add("champagne");
+                ingredientList.Add("prosecco");
+            }
+            else if (ingredientList.Contains("prosecco"))
+            {
+                ingredientList.Add("champagne");
+                ingredientList.Add("sparkling-wine");
+            }
+            else if (ingredientList.Contains("champagne"))
+            {
+                ingredientList.Add("prosecco");
+                ingredientList.Add("sparkling-wine");
+            }
+
+            return ingredientList;
         }
 
         private static List<Drink> GetNextPageDrinks(int retrievedSoFar, string query)

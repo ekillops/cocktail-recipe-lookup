@@ -4,6 +4,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    @* Favicon *@
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="~/favicon.ico" type="image/x-icon">
     @* Materialize/CSS *@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -39,13 +42,6 @@
                             </a>
                         </li>
                     </ul>
-                    @*<form class="right" asp-controller="Drinks" asp-action="Search">
-                            <div class="input-field">
-                                <input id="search" type="search" name="query" placeholder="Search by drink name...">
-                                <label class="label-icon" for="search"><i class="material-icons grey-text text-darken-2">search</i></label>
-                                <i class="material-icons">close</i>
-                            </div>
-                        </form>*@
                 </div>
                 <div id="search" class="row white-text grey darken-3">
                     <div class="container">

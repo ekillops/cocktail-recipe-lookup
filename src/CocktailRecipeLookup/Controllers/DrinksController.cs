@@ -49,14 +49,17 @@ namespace CocktailRecipeLookup.Controllers
 
             switch (searchType)
             {
-                case "exactMatch":
-                    foundDrinks = DrinkModel.FindDrinksWithExactIngredients(ingredients);
+                case "containingAll":
+                    foundDrinks = DrinkModel.FindDrinksContainingAllIngredients(ingredients);
                     break;
-                case "allContaining":
-                    foundDrinks = DrinkModel.FindAllDrinksContainingIngredients(ingredients);
+                case "containingAny":
+                    foundDrinks = DrinkModel.FindDrinksContainingAnyIngredients(ingredients);
                     break;
                 case "whatYouHave":
                     foundDrinks = DrinkModel.FindDrinksWithAvailableIngredients(ingredients);
+                    break;
+                case "exactMatch":
+                    foundDrinks = DrinkModel.FindDrinksWithExactIngredients(ingredients);
                     break;
                 default:
                     break;
