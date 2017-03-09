@@ -29,6 +29,7 @@
   },
   "publishOptions": {
     "include": [
+      "**/*.cshtml",
       "wwwroot",
       "web.config"
     ]
