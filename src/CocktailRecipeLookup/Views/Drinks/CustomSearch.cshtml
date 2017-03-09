@@ -44,7 +44,7 @@
         <ul id='customSearch' class='dropdown-content'>
             <li><a class="custom-search" id="containingAll">Containing All</a></li>
             <li><a class="custom-search" id="containingAll">Containing Any</a></li>
-            <li><a class="custom-search" id="searchExact">Exact Matches</a></li>
+            @*<li><a class="custom-search" id="searchExact">Exact Matches</a></li>*@
             <li><a class="custom-search" id="whatYouHave">What You Have</a></li>
         </ul>
 
@@ -65,16 +65,16 @@
         <p>
             <span class="search-definition">Containing Any</span> - Drinks containing any of the specified ingredients will match, including recipes with ingredients not specified.
         </p>
-        <p>
-            <span class="search-definition">Exact Match</span> - Only drinks containing all the specified ingredients will match. 
-        </p>
+        @*<p>
+            <span class="search-definition">Exact Match</span> - Only drinks containing all the specified ingredients will match. Even ice cubes must be specified!
+        </p>*@
         <p>
             <span class="search-definition">What You Have</span> - Drinks containing some or all specified ingredients will match.
         </p>
-        <p>For all searches except Exact Match, standard ingredients will be </p>
         <br />
         <h4>General Help</h4>
-        <p>Drinks, ingredients, and recipes on ADDb are listed in very specific and not always logical way. For instance, even with <em>Cointreau</em> selected, recipes using <em>Triple Sec</em> will not match. For best results select all variations of an ingredient. If you need help identifying ingredients or locating a recipe you think is missing from your results, use the search bar at the top of the page.</p>
+        <p>Drinks, ingredients, and recipes on ADDb are listed in very specific and not always logical ways. Our search algorithm will try to include equivilalent ingredients but may not catch everything. If you need help identifying ingredients or locating a recipe you think is missing from your results, use the search bar at the top of the page.</p>
+        <p>To help you retrieve more useful results common ingredients will be included in your search, such as ice cubes, simple syrup, bitters, and soda water, as well as typical garnishes such as lemon, lime, or cherries.</p>
     </div>
     <div class="modal-footer">
         <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>

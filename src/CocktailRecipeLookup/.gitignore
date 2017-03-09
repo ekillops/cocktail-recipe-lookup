@@ -1,1 +1,4 @@
 EnvironmentVariables.cs
+obj/*
+bin/*
+PublishProfiles/*

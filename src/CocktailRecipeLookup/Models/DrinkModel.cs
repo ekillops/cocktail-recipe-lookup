@@ -345,6 +345,13 @@ namespace CocktailRecipeLookup.Models
                 ingredientList.Add("ginger-beer");
             }
 
+            // Egg
+            if (ingredientList.Contains("egg-yolk-and-white"))
+            {
+                ingredientList.Add("egg-white");
+                ingredientList.Add("egg-yolk");
+            }
+
             // Sparkling Wine
             if (ingredientList.Contains("sparkling-wine"))
             {
@@ -361,6 +368,54 @@ namespace CocktailRecipeLookup.Models
                 ingredientList.Add("prosecco");
                 ingredientList.Add("sparkling-wine");
             }
+
+            // Hot & Cold
+            if (ingredientList.Contains("cranberry-juice"))
+            {
+                ingredientList.Add("cranberry-juice-hot");
+            }
+            else if (ingredientList.Contains("cranberry-juice-hot"))
+            {
+                ingredientList.Add("cranberry-juice-hot");
+            }
+
+            if (ingredientList.Contains("cider"))
+            {
+                ingredientList.Add("cider-hot");
+            }
+            else if (ingredientList.Contains("cider-hot"))
+            {
+                ingredientList.Add("cider-hot");
+            }
+
+            if (ingredientList.Contains("tea"))
+            {
+                ingredientList.Add("tea-cold");
+            }
+            else if (ingredientList.Contains("tea-cold"))
+            {
+                ingredientList.Add("tea");
+            }
+
+            if (ingredientList.Contains("coffee"))
+            {
+                ingredientList.Add("coffee-cold");
+            }
+            else if (ingredientList.Contains("coffee-cold"))
+            {
+                ingredientList.Add("coffee");
+            }
+
+            if (ingredientList.Contains("espresso-coffee"))
+            {
+                ingredientList.Add("espresso-coffee-cold");
+            }
+            else if (ingredientList.Contains("espresso-coffee-cold"))
+            {
+                ingredientList.Add("espresso-coffee");
+            }
+
+
 
             return ingredientList;
         }

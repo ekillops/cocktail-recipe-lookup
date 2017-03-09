@@ -3532,8 +3532,8 @@ if (jQuery) {
             activateOption(options, selectedOption, true);
           }
         },
-        'click': function (e){
-          e.stopPropagation();
+        'click': function (e) {
+            e.stopPropagation();
         }
       });
 
