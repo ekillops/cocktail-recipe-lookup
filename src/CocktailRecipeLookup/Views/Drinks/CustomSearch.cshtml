@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Drinks";
+}
+
+@using CocktailRecipeLookup.Models
+@model List<Ingredient>
+
+<h3>Discover Recipes</h3>
+
+<p>Select your available ingredients from the lists below.</p>
+<br />
+<div class="row">
+    <form id="drinkSearch">
+        <div class="input-field">
+            <select id="baseSpirits" multiple>
+                <option disabled>Select base spirits</option>
+                @foreach (var ingredient in Model)
+                {
+                    @if (ingredient.isBaseSpirit == true && !ingredient.id.Contains("absolut"))
+                    {
+                        <option value="@ingredient.id">@ingredient.name</option>
+                    }
+                }
+            </select>
+            <label>Base Spirits</label>
+        </div>
+        <br />
+        <div class="input-field">
+            <select id="ingredients" multiple>
+                <option disabled>Select ingredients</option>
+                @foreach (var ingredient in Model)
+                {
+                    @if (ingredient.isBaseSpirit == false && !ingredient.id.Contains("absolut"))
+                    {
+                        <option value="@ingredient.id">@ingredient.name</option>
+                    }
+                }
+            </select>
+            <label>Ingredients</label>
+        </div>
+        <a class='dropdown-button btn' href='#' data-activates='customSearch'>Custom Search</a>
+
+        <!-- Dropdown Structure -->
+        <ul id='customSearch' class='dropdown-content'>
+            <li><a class="custom-search" id="allContaining">All Containing</a></li>
+            <li><a class="custom-search" id="searchExact">Exact Matches</a></li>
+            <li><a class="custom-search" id="whatYouHave">What You Have</a></li>
+        </ul>
+
+        <button class="btn btn-flat right" data-target="help">Help</button>
+    </form>
+</div>
+<br />
+<div id="searchResultHeader"></div>
+<div id="searchResults"></div>
+
+@* Modal for Help button *@
+<div id="help" class="modal">
+    <div class="modal-content">
+        <h4>Custom Search</h4>
+        <p>
+            <span class="search-definition">All Containing</span> - All drinks containing the specified ingredients will match, including recipes with ingredients not specified.
+        </p>
+        <p>
+            <span class="search-definition">Exact Match</span> - Only drinks containing all the specified ingredients will match. 
+        </p>
+        <p>
+            <span class="search-definition">What You Have</span> - Drinks containing some or all specified ingredients will match.
+        </p>
+        <p>For all searches except Exact Match, standard ingredients will be </p>
+        <br />
+        <h4>General Help</h4>
+        <p>Drinks, ingredients, and recipes on ADDb are listed in very specific and not always logical way. For instance, even with <em>Cointreau</em> selected, recipes using <em>Triple Sec</em> will not match. For best results select all variations of an ingredient. If you need help identifying ingredients or locating a recipe you think is missing from your results, use the search bar at the top of the page.</p>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect btn-flat">Close</a>
+    </div>
+</div>
+
+@* Activate search *@
+<script>
+    $(document).ready(function () {
+        $(".custom-search").click(function () {
+            
+            var searchTypeInput = $(this).attr('id');
+
+            $("#searchResultHeader").html('<div class="progress"><div class="indeterminate"></div></div>');
+            $("#searchResults").empty();
+
+            // Collect form inputs
+            var selectedIngredients = [];
+            $('#baseSpirits option:selected').each(function () {
+                selectedIngredients.push($(this).val());
+            });
+            $('#ingredients option:selected').each(function () {
+                selectedIngredients.push($(this).val());
+            });
+
+            // Send search request to controller/model
+            $.ajax({
+                url: "/Drinks/SearchCustom",
+                traditional: true,
+                data: { ingredients: selectedIngredients, searchType: searchTypeInput },
+                success: function (drinkListPartial) {
+                    // Display results
+                    $("#searchResultHeader").empty();
+                    $("#searchResults").html(drinkListPartial);
+                }
+            })
+        })
+    });
+</script>

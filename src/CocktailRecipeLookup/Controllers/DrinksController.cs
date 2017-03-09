@@ -6,7 +6,16 @@ namespace CocktailRecipeLookup.Controllers
 {
     public class DrinksController : Controller
     {
-        public IActionResult UseAvailableIngredients()
+        public IActionResult UseWhatYouHave()
+        {
+            if (IngredientModel.AllIngredients == null)
+            {
+                IngredientModel.GetAll();
+            }
+            return View(IngredientModel.AllIngredients);
+        }
+
+        public IActionResult CustomSearch()
         {
             if (IngredientModel.AllIngredients == null)
             {
@@ -30,7 +39,29 @@ namespace CocktailRecipeLookup.Controllers
 
         public IActionResult SearchByIngredients(List<string> ingredients)
         {
-            List<Drink> foundDrinks = DrinkModel.FindDrinksWithAvailable(ingredients);
+            List<Drink> foundDrinks = DrinkModel.FindDrinksWithAvailableIngredients(ingredients);
+            return View("SearchResultsPartial", foundDrinks);
+        }
+
+        public IActionResult SearchCustom(List<string> ingredients, string searchType)
+        {
+            List<Drink> foundDrinks = new List<Drink>();
+
+            switch (searchType)
+            {
+                case "exactMatch":
+                    foundDrinks = DrinkModel.FindDrinksWithExactIngredients(ingredients);
+                    break;
+                case "allContaining":
+                    foundDrinks = DrinkModel.FindAllDrinksContainingIngredients(ingredients);
+                    break;
+                case "whatYouHave":
+                    foundDrinks = DrinkModel.FindDrinksWithAvailableIngredients(ingredients);
+                    break;
+                default:
+                    break;
+            }
+
             return View("SearchResultsPartial", foundDrinks);
         }
     }

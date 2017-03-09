@@ -1,31 +1,8 @@
 ﻿/* #616161 text-grey, text-darken-2*/ 
-a.brand-logo {
-    color: #616161;
-}
 
-nav ul li a{
-    color: #616161;
-}
 
-nav .input-field input {
-    font-size: 1rem;
-}
+/* _Layout & Navbar */
 
-#title {
-    font-weight: 400;
-} 
-
-#sub-title {
-    font-weight: 300;
-}
-
-#call-to-action {
-    text-align: center;
-}
-
-.parallax-container {
-    height: 350px;
-}
 @media only screen and (min-width: 769px) {
     a.brand-logo {
         padding-left: 20px;
@@ -43,6 +20,32 @@ nav .input-field input {
         max-width: 200%;
     }
 }
+a.brand-logo {
+    color: #616161;
+}
+
+nav ul li a{
+    color: #616161;
+}
+
+.parallax-container {
+    height: 350px;
+}
+
+
+/* Home - Index */
+
+#title {
+    font-weight: 400;
+} 
+
+#sub-title {
+    font-weight: 300;
+}
+
+#call-to-action {
+    text-align: center;
+}
 
 #search {
     display: none;
@@ -52,7 +55,7 @@ nav .input-field input {
 }
 
 
-/* Make footer sticky */
+/* Footer - Make it sticky */
 
 body {
     display: flex;
@@ -62,4 +65,11 @@ body {
 
 main {
     flex: 1 0 auto;
+}
+
+
+/* Drinks - Custom Search */
+
+.search-definition {
+    font-weight: 500;
 }

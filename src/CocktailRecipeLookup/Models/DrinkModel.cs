@@ -103,7 +103,7 @@ namespace CocktailRecipeLookup.Models
         }
 
 
-        public static List<Drink> FindDrinksWithAvailable(List<string> ingredients)
+        public static List<Drink> FindDrinksWithAvailableIngredients(List<string> ingredients)
         {
             List<Drink> bigDrinkList = new List<Drink>();
 
@@ -143,9 +143,53 @@ namespace CocktailRecipeLookup.Models
             return removePartialMatches(bigDrinkList, ingredients);
         }
 
+        public static List<Drink> FindAllDrinksContainingIngredients(List<string> ingredients)
+        {
+            List<Drink> bigDrinkList = new List<Drink>();
+
+            string queryString = "drinks/with/";
+
+            for (int i = 0; i < ingredients.Count; i++)
+            {
+                if (i != ingredients.Count - 1)
+                {
+                    queryString += ingredients[i] + "/and/";
+                }
+                else
+                {
+                    queryString += ingredients[i] + "/?apiKey=" + EnvironmentVariables.ADDbApiKey + "&pageSize=100";
+                }
+            }
+
+            RestClient client = new RestClient("http://addb.absolutdrinks.com/");
+            RestRequest request = new RestRequest(queryString);
+            RestResponse response = new RestResponse();
+
+            Task.Run(async () =>
+            {
+                response = await GetResponseContentAsync(client, request) as RestResponse;
+            }).Wait();
+
+            DrinkQuery resultDrinks = JsonConvert.DeserializeObject<DrinkQuery>(response.Content);
+
+            bigDrinkList.AddRange(resultDrinks.result);
+
+            while (bigDrinkList.Count < resultDrinks.totalResult - 1)
+            {
+                List<Drink> nextPage = GetNextPageDrinks(bigDrinkList.Count, queryString);
+                bigDrinkList.AddRange(nextPage);
+            }
+
+            return bigDrinkList;
+        }
+
+        // Filter function
         private static List<Drink> removePartialMatches(List<Drink> drinkList, List<string> userIngredients)
         {
-            List<string> standardIngredients = new List<string> { "ice-cubes", "simple-syrup", "bitters", "lemon", "lime", "orange", "maraschino-berry", "apple", "soda-water" };
+            // ADD EGG WHITE ??
+
+            // List of ingredients to ignore when filtering out partial matches
+            List<string> standardIngredients = new List<string> { "ice-cubes", "simple-syrup", "bitters", "lemon", "lime", "orange", "maraschino-berry", "apple", "soda-water", "egg-white" };
 
             List<Drink> matches = new List<Drink>();
 
