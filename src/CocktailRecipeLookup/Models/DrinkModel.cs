@@ -241,7 +241,7 @@ namespace CocktailRecipeLookup.Models
                 foreach (DrinkIngredient ingredient in drink.ingredients)
                 {
                     //if (!userIngredients.Contains(ingredient.id) && !standardIngredients.Contains(ingredient.id))
-                    if (!userIngredients.Contains(ingredient.id))
+                    if (!userIngredients.Contains(ingredient.id) && !standardIngredients.Contains(ingredient.id))
                     {
                         matching = false;
                         break;

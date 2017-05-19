@@ -32,14 +32,15 @@
                 {
                     @if (ingredient.isBaseSpirit == false && !ingredient.id.Contains("absolut"))
                     {
-                        @if (IngredientModel.standardIngredientIds.Contains(ingredient.id))
+                        @*@if (IngredientModel.standardIngredientIds.Contains(ingredient.id))
                         {
                             <option value="@ingredient.id" selected>@ingredient.name</option>
                         }
                         else
                         {
                             <option value="@ingredient.id">@ingredient.name</option>
-                        }
+                        }*@
+                        <option value="@ingredient.id">@ingredient.name</option>
                     }
                 }
             </select>
