@@ -11,7 +11,7 @@
 <br />
 <div class="row">
     <form id="drinkSearch">
-        <div class="input-field">
+        <div class="input-field" id="baseSpiritsDiv">
             <select id="baseSpirits" multiple>
                 <option disabled>Select base spirits</option>
                 @foreach (var ingredient in Model)
@@ -25,20 +25,31 @@
             <label>Base Spirits</label>
         </div>
         <br />
-        <div class="input-field">
+        <div class="input-field" id="ingredientsDiv">
             <select id="ingredients" multiple>
                 <option disabled>Select ingredients</option>
                 @foreach (var ingredient in Model)
                 {
                     @if (ingredient.isBaseSpirit == false && !ingredient.id.Contains("absolut"))
                     {
-                        <option value="@ingredient.id">@ingredient.name</option>
+                        @if (IngredientModel.standardIngredientIds.Contains(ingredient.id))
+                        {
+                            <option value="@ingredient.id" selected>@ingredient.name</option>
+                        }
+                        else
+                        {
+                            <option value="@ingredient.id">@ingredient.name</option>
+                        }
                     }
                 }
             </select>
             <label>Ingredients</label>
         </div>
         <input type="submit" value="Search Recipes" class="btn" />
+
+        @*<input type="checkbox" class="filled-in" id="includeStandardIngredients" checked="checked" />
+        <label for="includeStandardIngredients">Include Standard Ingredients</label>*@
+
         <button class="btn btn-flat right" data-target="help">Help</button>
     </form>
 </div>
@@ -58,10 +69,38 @@
     </div>
 </div>
 
-
 @* Activate search *@
 <script>
     $(document).ready(function () {
+        //$('#includeStandardIngredients').change(function () {
+        //    debugger
+        //    var standardIngredients = ['ice-cubes', 'simple-syrup', 'bitters', 'lemon', 'lime', 'orange', 'maraschino-berry', 'apple', 'soda-water', 'egg-white'];
+
+        //    if (this.checked) {
+        //        $('#ingredients option').each(function () {
+        //            if (standardIngredients.includes(this.value)) {
+        //                $(this).attr('selected', 'selected');
+        //                console.log(this);
+        //            }
+        //        });
+        //    }
+        //    if (!this.checked) {
+        //        $('#ingredients option').each(function () {
+        //            if (standardIngredients.includes(this.value)) {
+        //                $(this).removeAttr('selected');
+        //                console.log(this);
+        //            }
+        //        });
+        //    }
+        //});
+
+        //if ($(window).width() > 1024) {
+        //    console.log("media query is working");
+        //    $("#ingredientsDiv, #baseSpiritsDiv").addClass("input-field");
+        //    $("#ingredients, #baseSpirits").removeClass("browser-default");
+        //    $('select').material_select();
+        //}
+
         $("#drinkSearch").submit(function (event) {
             event.preventDefault();
             debugger

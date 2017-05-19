@@ -9,6 +9,8 @@ namespace CocktailRecipeLookup.Models
     {
         public static List<Ingredient> AllIngredients { get; set; }
 
+        public static List<string> standardIngredientIds = new List<string> { "ice-cubes", "simple-syrup", "sugar-cube-white", "sugar-superfine", "bitters", "lemon", "lime", "orange", "maraschino-berry", "apple", "soda-water", "egg-white" };
+
 
         public static Ingredient Details(string id)
         {

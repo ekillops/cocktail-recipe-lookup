@@ -102,7 +102,6 @@ namespace CocktailRecipeLookup.Models
             return RemovePartialMatches(resultDrinks.result, ingredients);
         }
 
-
         public static List<Drink> FindDrinksWithAvailableIngredients(List<string> ingredients)
         {
             ingredients = AddRelatedIngredients(ingredients);
@@ -232,16 +231,7 @@ namespace CocktailRecipeLookup.Models
         {
 
             // List of ingredients to ignore when filtering out partial matches
-            List<string> standardIngredients = new List<string> { "ice-cubes", "simple-syrup", "bitters", "lemon", "lime", "orange", "maraschino-berry", "apple", "soda-water", "egg-white" };
-
-            if(userIngredients.Contains("triple-sec"))
-            {
-                userIngredients.Add("cointreau");
-            }
-            if (userIngredients.Contains("cointreau"))
-            {
-                userIngredients.Add("triple-sec");
-            }
+            List<string> standardIngredients = new List<string> { "ice-cubes", "simple-syrup", "sugar-cube-white", "sugar-superfine", "bitters", "lemon", "lime", "orange", "maraschino-berry", "apple", "soda-water", "egg-white" };
 
             List<Drink> matches = new List<Drink>();
 
@@ -250,7 +240,8 @@ namespace CocktailRecipeLookup.Models
                 bool matching = true;
                 foreach (DrinkIngredient ingredient in drink.ingredients)
                 {
-                    if (!userIngredients.Contains(ingredient.id) && !standardIngredients.Contains(ingredient.id))
+                    //if (!userIngredients.Contains(ingredient.id) && !standardIngredients.Contains(ingredient.id))
+                    if (!userIngredients.Contains(ingredient.id))
                     {
                         matching = false;
                         break;
@@ -329,7 +320,7 @@ namespace CocktailRecipeLookup.Models
                 ingredientList.Add("vermouth-sweet");
                 ingredientList.Add("italian-vermouth");
             }
-            else if (ingredientList.Contains("italian-vermout"))
+            else if (ingredientList.Contains("italian-vermouth"))
             {
                 ingredientList.Add("vermouth-sweet");
                 ingredientList.Add("red-vermouth");

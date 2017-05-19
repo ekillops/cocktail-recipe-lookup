@@ -43,7 +43,7 @@
         <!-- Dropdown Structure -->
         <ul id='customSearch' class='dropdown-content'>
             <li><a class="custom-search" id="containingAll">Containing All</a></li>
-            <li><a class="custom-search" id="containingAll">Containing Any</a></li>
+            <li><a class="custom-search" id="containingAny">Containing Any</a></li>
             @*<li><a class="custom-search" id="searchExact">Exact Matches</a></li>*@
             <li><a class="custom-search" id="whatYouHave">What You Have</a></li>
         </ul>
@@ -84,6 +84,14 @@
 @* Activate search *@
 <script>
     $(document).ready(function () {
+
+        //if ($(window).width() > 1024) {
+        //    console.log("media query is working");
+        //    $("#ingredientsDiv, #baseSpiritsDiv").addClass("input-field");
+        //    $("#ingredients, #baseSpirits").removeClass("browser-default");
+        //    $('select').material_select();
+        //}
+
         $(".custom-search").click(function () {
             
             var searchTypeInput = $(this).attr('id');
